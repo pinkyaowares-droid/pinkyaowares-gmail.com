@@ -1,0 +1,9 @@
+[project]
+name = "thavorn-fb-mcp"
+version = "1.0.0"
+description = "MCP server สำหรับคู่มือ SOP แผนกอาหารและเครื่องดื่ม Thavorn Palm Beach Resort"
+requires-python = ">=3.10"
+dependencies = ["mcp>=2.0,<3.0"]
+
+[project.scripts]
+thavorn-fb-mcp = "server:main"
