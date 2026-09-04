@@ -9,6 +9,7 @@ MCP Server — Thavorn Palm Beach Resort F&B SOP
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
@@ -483,4 +484,10 @@ def read_source(source: str) -> str:
 
 
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    port = os.environ.get("PORT")
+    if port:
+        # Deployed as a web service (e.g. Railway sets PORT) — serve over HTTP
+        mcp.run(transport="streamable-http", host="0.0.0.0", port=int(port))
+    else:
+        # Run locally as a stdio subprocess for MCP clients (Claude Desktop, etc.)
+        mcp.run(transport="stdio")
